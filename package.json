@@ -1,0 +1,28 @@
+{
+  "name": "@kompakkt/shared",
+  "version": "0.0.1",
+  "description": "TypeScript definitions used in different parts of Kompakkt",
+  "main": "",
+  "scripts": {},
+  "keywords": [
+    "kompakkt",
+    "Kompakkt"
+  ],
+  "author": "Kai Niebes",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Kai Niebes",
+      "url": "https://github.com/HeyItsBATMAN",
+      "githubUsername": "HeyItsBATMAN"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/DH-Cologne/Kompakkt.Shared.git"
+  },
+  "dependencies": {
+    "@types/bson": "^4.0.0",
+    "typescript": ">2.9.2"
+  }
+}
