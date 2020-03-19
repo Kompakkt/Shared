@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@types/bson": "^4.0.0",
+    "bson": "^4.0.2",
     "typescript": ">=3.7.2"
   }
 }
