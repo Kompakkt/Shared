@@ -302,6 +302,7 @@ export interface IStrippedUserData {
 export interface ILoginData {
   username: string;
   password: string;
+  isCached: boolean;
 }
 
 export interface IUserData {
@@ -419,21 +420,23 @@ export interface IWhitelist {
 
 export interface IEntitySettings {
   preview: string;
-    cameraPositionInitial: {
-      position: { x: number; y: number; z: number };
-      target: { x: number; y: number; z: number };
-    };
-    background: {
-      color: { r: number; b: number; g: number; a: number };
-      effect: boolean;
-    };
-    lights: Array<{
-      type: string;
-      position: { x: number; y: number; z: number };
-      intensity: number;
-    }>;
-    rotation: { x: number; y: number; z: number };
-    scale: number;
+  cameraPositionInitial: {
+    position: { x: number; y: number; z: number };
+    target: { x: number; y: number; z: number };
+  };
+  background: {
+    color: { r: number; b: number; g: number; a: number };
+    effect: boolean;
+  };
+  lights: IEntityLight[];
+  rotation: { x: number; y: number; z: number };
+  scale: number;
+}
+
+export interface IEntityLight {
+  type: string;
+  position: { x: number; y: number; z: number };
+  intensity: number;
 }
 
 export interface IEntity extends IWhitelist, IAnnotationList {
