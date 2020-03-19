@@ -1,5 +1,7 @@
 import { ObjectId } from 'bson';
 
+export { ObjectId };
+
 // Enums
 export enum EUserRank {
   user = 'user',
@@ -126,10 +128,7 @@ export const isEntity = (obj: any): obj is IEntity => {
  */
 export const isAnnotation = (obj: any): obj is IAnnotation => {
   const annotation = obj as IAnnotation;
-  return (
-    annotation?.body !== undefined &&
-    annotation?.target !== undefined
-  );
+  return annotation?.body !== undefined && annotation?.target !== undefined;
 };
 
 /**
@@ -138,9 +137,7 @@ export const isAnnotation = (obj: any): obj is IAnnotation => {
  */
 export const isDigitalEntity = (obj: any): obj is IMetaDataDigitalEntity => {
   const digentity = obj as IMetaDataDigitalEntity;
-  return (
-    digentity?.type !== undefined && digentity?.licence !== undefined
-  );
+  return digentity?.type !== undefined && digentity?.licence !== undefined;
 };
 
 /**
