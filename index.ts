@@ -242,6 +242,14 @@ export interface IMetaDataBaseEntity {
     description: string;
     value: string;
   }>;
+  biblioRefs: Array<{
+    description: string;
+    value: string;
+  }>;
+  other: Array<{
+    description: string;
+    value: string;
+  }>;
 
   metadata_files: IFile[];
 
@@ -313,6 +321,7 @@ export interface IUserData {
 }
 
 export interface IGroup {
+  _id: string | ObjectId;
   name: string;
   creator: IStrippedUserData;
   owners: IStrippedUserData[];
@@ -409,8 +418,7 @@ export interface IWhitelist {
 }
 
 export interface IEntitySettings {
-  settings: {
-    preview: string;
+  preview: string;
     cameraPositionInitial: {
       position: { x: number; y: number; z: number };
       target: { x: number; y: number; z: number };
@@ -426,10 +434,9 @@ export interface IEntitySettings {
     }>;
     rotation: { x: number; y: number; z: number };
     scale: number;
-  };
 }
 
-export interface IEntity extends IWhitelist, IEntitySettings, IAnnotationList {
+export interface IEntity extends IWhitelist, IAnnotationList {
   _id: ObjectId | string;
 
   name: string;
@@ -456,6 +463,8 @@ export interface IEntity extends IWhitelist, IEntitySettings, IAnnotationList {
     high: string;
     raw: string;
   };
+
+  settings: IEntitySettings;
 }
 
 export interface ICreator {
