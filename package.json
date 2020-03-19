@@ -1,9 +1,11 @@
 {
   "name": "@kompakkt/shared",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "TypeScript definitions used in different parts of Kompakkt",
-  "main": "",
-  "scripts": {},
+  "scripts": {
+    "prepublish": "tsc",
+    "postinstall": "tsc"
+  },
   "keywords": [
     "kompakkt",
     "Kompakkt"
@@ -25,5 +27,7 @@
     "@types/bson": "^4.0.0",
     "bson": "^4.0.2",
     "typescript": ">=3.7.2"
-  }
+  },
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js"
 }
