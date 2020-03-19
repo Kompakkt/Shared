@@ -40,51 +40,125 @@ export enum Role {
 }
 
 // Typeguards
+/**
+ * TypeGuard: Checks whether an <IEntity | IUnresolvedEntity> is fully resolved
+ * @type {Boolean}
+ */
+export const isResolved = (obj: any): obj is IEntity => {
+  return obj?.relatedDigitalEntity?.description !== undefined;
+};
+
+/**
+ * TypeGuard: Checks whether a document received from the backend is still unresolved
+ * @type {Boolean}
+ */
+export const isUnresolved = (obj: any): obj is IUnresolvedEntity => {
+  return Object.keys(obj).length === 1 && obj._id !== undefined;
+};
+
+/**
+ * TypeGuard: Checks whether an object is a group entry
+ * @type {Boolean}
+ */
+export const isGroup = (obj: any): obj is IGroup => {
+  return (
+    obj?.name !== undefined &&
+    obj?.creator !== undefined &&
+    obj?.owners !== undefined &&
+    obj?.members !== undefined
+  );
+};
+
+/**
+ * TypeGuard: Checks whether an object is a tag entry
+ * @type {Boolean}
+ */
+export const isTag = (obj: any): obj is IMetaDataTag => {
+  return obj && obj.value !== undefined;
+};
+
+/**
+ * TypeGuard: Checks whether an object is a digital/physical entity
+ * @type {Boolean}
+ */
+export const isMetadataEntity = (
+  obj: any,
+): obj is IMetaDataDigitalEntity | IMetaDataPhysicalEntity => {
+  return (
+    obj?.title !== undefined &&
+    obj?.description !== undefined &&
+    obj?.persons !== undefined &&
+    obj?.institutions !== undefined
+  );
+};
+
+/**
+ * TypeGuard: Checks whether an object is a compilation
+ * @type {Boolean}
+ */
 export const isCompilation = (obj: any): obj is ICompilation => {
   const compilation = obj as ICompilation;
   return (
-    compilation &&
-    compilation.entities !== undefined &&
-    compilation.name !== undefined &&
-    compilation.description !== undefined
+    compilation?.entities !== undefined &&
+    compilation?.name !== undefined &&
+    compilation?.description !== undefined &&
+    Array.isArray(compilation?.entities)
   );
 };
 
+/**
+ * TypeGuard: Checks whether an object is an entity
+ * @type {Boolean}
+ */
 export const isEntity = (obj: any): obj is IEntity => {
   const entity = obj as IEntity;
   return (
-    entity &&
-    entity.name !== undefined &&
-    entity.mediaType !== undefined &&
-    entity.online !== undefined &&
-    entity.finished !== undefined
+    entity?.name !== undefined &&
+    entity?.mediaType !== undefined &&
+    entity?.online !== undefined &&
+    entity?.finished !== undefined
   );
 };
 
+/**
+ * TypeGuard: Checks whether an object is an annotation
+ * @type {Boolean}
+ */
 export const isAnnotation = (obj: any): obj is IAnnotation => {
   const annotation = obj as IAnnotation;
   return (
-    annotation &&
-    annotation.body !== undefined &&
-    annotation.target !== undefined
+    annotation?.body !== undefined &&
+    annotation?.target !== undefined
   );
 };
 
+/**
+ * TypeGuard: Checks whether an object is a digital entity
+ * @type {Boolean}
+ */
 export const isDigitalEntity = (obj: any): obj is IMetaDataDigitalEntity => {
   const digentity = obj as IMetaDataDigitalEntity;
   return (
-    digentity && digentity.type !== undefined && digentity.licence !== undefined
+    digentity?.type !== undefined && digentity?.licence !== undefined
   );
 };
 
+/**
+ * TypeGuard: Checks whether an object is a person
+ * @type {Boolean}
+ */
 export const isPerson = (obj: any): obj is IMetaDataPerson => {
   const person = obj as IMetaDataPerson;
-  return person && person.prename !== undefined && person.name !== undefined;
+  return person?.prename !== undefined && person?.name !== undefined;
 };
 
+/**
+ * TypeGuard: Checks whether an object is an institution
+ * @type {Boolean}
+ */
 export const isInstitution = (obj: any): obj is IMetaDataInstitution => {
   const inst = obj as IMetaDataInstitution;
-  return inst && inst.name !== undefined && inst.addresses !== undefined;
+  return inst?.name !== undefined && inst?.addresses !== undefined;
 };
 
 // Interfaces

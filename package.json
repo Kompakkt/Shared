@@ -1,6 +1,6 @@
 {
   "name": "@kompakkt/shared",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "TypeScript definitions used in different parts of Kompakkt",
   "main": "",
   "scripts": {},
@@ -23,6 +23,6 @@
   },
   "dependencies": {
     "@types/bson": "^4.0.0",
-    "typescript": ">2.9.2"
+    "typescript": ">=3.7.2"
   }
 }
