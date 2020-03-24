@@ -103,8 +103,7 @@ export const isCompilation = (obj: any): obj is ICompilation => {
   return (
     compilation?.entities !== undefined &&
     compilation?.name !== undefined &&
-    compilation?.description !== undefined &&
-    Array.isArray(compilation?.entities)
+    compilation?.description !== undefined
   );
 };
 
@@ -406,10 +405,6 @@ export interface IFile {
   file_format: string;
 }
 
-export interface IAnnotationList {
-  annotationList: Array<IAnnotation | null | ObjectId>;
-}
-
 export interface IWhitelist {
   whitelist: {
     enabled: boolean;
@@ -418,25 +413,44 @@ export interface IWhitelist {
   };
 }
 
+export interface IColor {
+  r: number;
+  b: number;
+  g: number;
+  a: number;
+}
+
+export interface IPosition {
+  x: number;
+  y: number;
+  z: number;
+}
+
 export interface IEntitySettings {
   preview: string;
   cameraPositionInitial: {
-    position: { x: number; y: number; z: number };
-    target: { x: number; y: number; z: number };
+    position: IPosition;
+    target: IPosition;
   };
   background: {
-    color: { r: number; b: number; g: number; a: number };
+    color: IColor;
     effect: boolean;
   };
   lights: IEntityLight[];
-  rotation: { x: number; y: number; z: number };
+  rotation: IPosition;
   scale: number;
 }
 
 export interface IEntityLight {
   type: string;
-  position: { x: number; y: number; z: number };
+  position: IPosition;
   intensity: number;
+}
+
+interface IAnnotationList {
+  annotations: {
+    [id: string]: IAnnotation | IUnresolvedEntity;
+  };
 }
 
 export interface IEntity extends IWhitelist, IAnnotationList {
@@ -482,7 +496,9 @@ export interface ICompilation extends IWhitelist, IAnnotationList {
   description: string;
   creator?: ICreator;
   password?: string | boolean;
-  entities: Array<IEntity | null | IUnresolvedEntity>;
+  entities: {
+    [id: string]: IEntity | IUnresolvedEntity;
+  };
 }
 
 // Socket related
