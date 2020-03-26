@@ -270,7 +270,7 @@ export interface IMetaDataDigitalEntity extends IMetaDataBaseEntity {
   licence: string;
 
   discipline: string[];
-  tags: IMetaDataTag[] | string[];
+  tags: IMetaDataTag[];
 
   dimensions: Array<{
     type: string;

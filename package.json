@@ -1,6 +1,6 @@
 {
   "name": "@kompakkt/shared",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TypeScript definitions used in different parts of Kompakkt",
   "scripts": {
     "prepublish": "tsc",
